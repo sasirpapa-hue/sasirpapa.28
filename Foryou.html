@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+    background:linear-gradient(135deg,#ff9ecf,#ffd6e8,#fff0f6);
+    position:relative;
+}
+
+/* พื้นหลังเบลอ */
+.blur{
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.5;
+}
+
+.blur1{
+    background:#ff4da6;
+    top:-100px;
+    left:-100px;
+}
+
+.blur2{
+    background:#ff80bf;
+    bottom:-100px;
+    right:-100px;
+}
+
+/* การ์ดสไตล์ iPhone */
+.card{
+    position:relative;
+    z-index:10;
+    width:90%;
+    max-width:420px;
+
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:35px;
+
+    padding:45px 30px;
+
+    text-align:center;
+
+    box-shadow:
+        0 8px 32px rgba(255,77,166,.25),
+        inset 0 1px 1px rgba(255,255,255,.4);
+
+    animation:floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.title{
+    font-size:32px;
+    margin-bottom:15px;
+    color:#ff2d7a;
+}
+
+.text{
+    color:#000000;
+    font-size:22px;
+    line-height:1.6;
+    text-shadow:0 0 15px rgba(255,255,255,.8);
+}
+
+/* เอฟเฟกต์เรืองแสง */
+.glow{
+    animation:glow 2.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:
+            0 0 10px rgba(255,255,255,.6),
+            0 0 20px rgba(255,255,255,.4);
+    }
+    to{
+        text-shadow:
+            0 0 20px rgb(255, 255, 255),
+            0 0 40px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* หัวใจลอย */
+.heart{
+    position:absolute; 
+    bottom:-50px;
+    color:#ff4d88;
+    user-select:none;
+    pointer-events:none;
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+    0%{
+        transform:translateY(0) scale(0.5);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120vh) scale(1.6);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+
+<div class="card">
+    <div class="title">❤️ For You ❤️</div>
+
+    <div class="text glow">
+        the longer I'm with you<br>
+        the more I love you
+    </div>
+</div>
+
+<script>
+function createHeart(){
+
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    const hearts = ["❤","💖","💕","💗","💘"];
+
+    heart.innerHTML =
+        hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize =
+        (15 + Math.random()*35) + "px";
+
+    heart.style.animationDuration =
+        (4 + Math.random()*5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },9000);
+}
+
+setInterval(createHeart,200);
+</script>
+
+</body>
+</html>
